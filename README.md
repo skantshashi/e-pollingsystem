@@ -1,10 +1,6 @@
-### Responsive Restaurant website using Html, Css and JavaScript.
+### Responsive e-Polling system website using Html, Css, php , MySQL and JavaScript.
 
-![Restaurant_website](https://github.com/codersgyan/Responsive-restaurant-website/blob/master/restaurant-webpage.jpg)
-
-
-#### Demo: https://codersgyan.github.io/Responsive-restaurant-website/
-
+  website ::  http://decvoting.42web.io/
 
 🙏 If you find this repo helpful then don't forget to give a start ❇️  to this repository. :)
 
