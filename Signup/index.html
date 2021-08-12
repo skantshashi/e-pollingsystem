@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+  </head>
+  <body>
+    <div class="box-container">
+      <div class="login-box">
+        <h2>e-Polling Signup</h2>
+        <form method="POST" action="signup.php">
+          <div class="user-box">
+            <style>
+              input[type="text"]::placeholder { /* Firefox, Chrome, Opera */
+                  color: white;
+              }
+              input[type="password"]::placeholder { /* Firefox, Chrome, Opera */
+                  color: white;
+              }
+              input[type="email"]::placeholder { /* Firefox, Chrome, Opera */
+                  color: white;
+              }
+                  
+              
+              </style>
+            
+            <input type="text" name="fname" required="required" placeholder="First Name" />
+            
+          </div>
+          <div class="user-box">
+
+            <input type="text" name="lname" id="lname" required="required" placeholder="Last Name" />
+            
+          </div>
+          
+          <div class="user-box">
+            <input type="email" name="email" id="email" required="required" placeholder="E-mail" />
+            
+          </div>
+          
+          <div class="user-box">
+            <input type="password" name="password" id="password" minlength="8" required="required" placeholder="Password" />
+            
+          </div>
+          <div class="user-box">
+            <input type="password" name="cpassword" minlength="8" id="cpassword" required="required" placeholder="Re-enter Password" />
+          </div>
+          
+          <b class="message" style="color:rgb(2, 2, 0); background-color: white;"></b>
+          <input type="submit" value="Signup" id="signup" disabled="true">
+        </form>
+        <a href="../elogin/loginpage.html" style="color: black; text-decoration: none; background-color: white; padding: 8px; border-radius: 4px;" >BACK</a>
+        
+      </div>
+    
+    <script>
+      $(document).ready(function(){
+        $("#cpassword").on("input",function(){
+          var crpwd = $("#password").val();
+          var copwd = $("#cpassword").val();
+          if(crpwd == copwd)
+          {
+            $("#signup").removeAttr("disabled");
+            $("#signup").css({"background-color":"blue"});
+            $(".message").html(" ");
+          }
+          else{
+            $(".message").html("Re-enter Password not match");
+          }
+
+        });
+        $("#username").on("change",function(){
+          var ulng = $(this).val();
+          
+
+        });
+        
+      });
+    </script>
+  </body>
+</html>
+
+<!-- 1. First Name 
+2. last name
+3. email
+4. phone
+5. Gender
+>>male
+>>female
+6. Address
+7. ID Proof
+* Pan card
+*passport
+* Addhar card
+*Voter id card
+*Driving licens -->
+<!----<div class="select">
+  <select name="idProof" id="idProof">
+    <option value="pancard">Pan Card</option>
+    <option value="aadharcard">Aadhar Card</option>
+    <option value="passport">Pass port</option>
+    <option value="voterid">Voter Id</option>
+    <option value="drivingLicence">Driving Licence</option>
+  </select>
+</div>--->

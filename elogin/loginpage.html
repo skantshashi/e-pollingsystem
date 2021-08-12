@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <style>
+      body{
+        background-color:white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="margin-bottom: .05rem; padding-bottom: .1rem;"><center>e-Polling</center></h1>
+    <div class="box-container">
+      <div class="login-box">
+        
+        <form id="login-submit">
+          <h2 style="margin-top: -1rem;">LOGIN</h2>
+          <style>
+            input[type="text"]::placeholder { /* Firefox, Chrome, Opera */
+                color: white;
+            }
+            input[type="password"]::placeholder { /* Firefox, Chrome, Opera */
+                color: white;
+            
+            </style>
+          
+
+          <div class="user-box">
+            
+            <input type="text" name="username" required="required" id="username" placeholder="Username" />
+            
+          </div>
+          
+          <div class="user-box">
+            <input type="password" name="password" required="required" id="password" placeholder="Password" />
+            
+          </div>
+          
+          <input type="submit" value="LOGIN" style="background-color:#FEFEFE; border:none;padding: 10px 25px; cursor: pointer; border-radius: 5px;">
+          <a href="../main votingpage/index.html" style="margin-left: 50px; color: #110707; background-color: #FEFEFE; border-radius: 4px;">Home</a>
+          
+        </form>
+        
+        <br><br>
+         <center><b style="color:white;">If You are not register then <a href="../Signup/index.html"  style=" border-radius: 10px ;color: #EEBF00;text-decoration: none; background-color: #232B38;;padding: 4px;">REGISTER</a></b> </center>
+        <form id="vlogin" class="vlogin">
+          <br>
+          <h2>VERIFY ACCOUNT</h2>
+          <span style="color:red;">Enter E-mail verification code </span>
+          <div class="user-box">
+            <input type="number" name="vcode" required="required" id="vcode" placeholder="verification code" />
+            
+          </div>
+          
+
+          
+
+          <input type="submit" value="MATCH" style="background-color: green; border:none;padding: 10px 25px; cursor: pointer; border-radius: 5px; color:white;">
+          <b class="message"></b>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+        $("#login-submit").submit(function(e){
+          e.preventDefault();
+          this.disabled="disabled";
+          var email = $("#username").val();
+          $.ajax({
+            type : "POST",
+            url : "login.php",
+            data : {
+              username :email,
+              password :$("#password").val()
+            },
+            cache:false,
+            success:function(response){
+              if(response.trim() == "success")
+              {
+                $("#login-submit").addClass("vlogin");
+                $("#vlogin").removeClass("vlogin");
+                $("#vlogin").submit(function(es){
+                  es.preventDefault();
+                  var vcode = $("#vcode").val();
+                  $.ajax({
+                    type : "POST",
+                    url : "verification.php",
+                    data : {
+                      email:email,
+                      vcode : vcode
+                    },
+                    cache:false,
+                    success:function(responses){
+                      if(responses.trim() == "success")
+                      {
+                        location.href = "../voting/index.php";
+                      }
+                      else{
+                        alert(responses);
+                      }
+                      
+                    }
+                  })
+
+                });
+              }
+              else if(response.trim() == "active")
+              {
+                 location.href = "../voting/index";
+              }
+              else{
+                alert(response);
+              }
+
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+

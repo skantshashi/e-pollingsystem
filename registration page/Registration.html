@@ -1,0 +1,181 @@
+	<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registration</title>
+		<meta charset="utf-8">
+		<link href="login.css" rel="stylesheet">
+		
+		<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+		
+	</head>
+	<body BGCOLOR="#dcdde3">
+		<div id="wrapper">
+			<header>
+				<h1 class="center">Registration of E-voting</h1>
+				<p class="center">Please enter the following information. Fields marked with an asterisk (<span class="required">*</span>) are required.</p>
+			</header>
+			<div id="content">
+			<form name="registration of e-voting" id="registration_evoting" method="POST" action="signup.php">
+				<fieldset>
+					<legend>Personal Information</legend>
+					<table>
+						<tr>
+							<td>
+								<span class="required">*</span><label for="firstName">First Name:</label>
+							</td>
+							<td>
+								<input type="text" required="required" name="firstName" id="firstName" size="22"  placeholder="Enter name">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="required">*</span><label for="lastName">Last Name:</label>
+							</td>
+							<td>
+								<input type="text" required="required" name="lastName" id="lastName" size="22" placeholder="Last name">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="required">*</span><label for="Age">Age:</label>
+							</td>
+							<td>
+								<input type="text" required="required" name="Age" id="Age" size="22" placeholder="Enter Age">
+							</td>
+						</tr>
+                         <tr>
+							<td>
+								<span class="required">*</span><label for="province">Gender:</label>
+								</td>
+								<td>
+									<select name="Gender" id="Gender" size="1">
+										<option value ="male">Male</option>
+										<option value="female">Female</option>
+										<option value="other">Others</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td><span class="required">*</span><label for="Phone number">Phone number:</label></td>
+								<td><input type="text" required="required" name="Phone" id="Phone number" size="22" placeholder="Enter Phone number"></td>
+							</tr>
+						
+							<tr>
+						
+							<td>
+								<span class="required">*</span><label for="address">Address:</label>
+							</td>
+							<td>
+								<input type="text" required="required" name="address" id="address" size="22" placeholder="Enter Address">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="required">*</span><label for="State">State:</label>
+							</td>
+							<td>
+								<input type="text" required="required" name="State" id="State" size="22" placeholder="Enter State">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="required">*</span><label for="city">City:</label>
+							</td>
+							<td>
+								<input type="text" required="required" name="city" id="city" size="22" placeholder="Enter City">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="required">*</span><label for="Pincode">Pincode:</label>
+							</td>
+							<td>
+								<input type="text" required="required" name="Pincode" id="Pincode" size="22" placeholder="Enter Pincode">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="required">*</span><label for="province">ID proof:</label>
+								
+							</td>
+							<td>
+								<select name="province" id="province" size="1">
+									<option>Select ID proof</option>
+									<option>Aadhaar Card</option>
+									<option>PAN card</option>
+									<option>Passport</option>
+									<option>Driving Licences</option>
+									<option>Voter Id card</option>	
+								</select>
+								<td><span class="required">*</span><label for="ID Number">ID Number:</label></td>
+								<td><input type="text" required="required" name="id_number" id="ID Number" size="22" placeholder="Enter ID Number"></td>	
+							   </td>
+
+						</tr>
+						<tr>
+							<td><span class="required">*</span><label for="emailAddress">Email address:</label></td>
+							<td><input type="text" required="required" name="emailAddress" id="emailAddress" size="22" min="8" placeholder="Enter Email address"></td>
+						</tr>
+						<tr>
+							<td><span class="required">*</span><label for="Create Password">Create Password:</label></td>
+							<td><input type="password" required="required" name="password" id="CreatePassword" size="22" min="8" placeholder="Create Password"></td>
+						</tr>
+						<tr>
+							<td><span class="required">*</span><label for="Confirm Password">Confirm Password:</label></td>
+							<td><input type="password" required="required" name="ConfirmPassword" id="CofirmPassword" min="8" size="22" placeholder="Confirm Password"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><b class="message" style="color:white;"></b></td>
+						</tr>
+					
+						
+					</table>
+				</fieldset>
+				<fieldset>
+					<legend>Submission</legend>
+					<table>
+						<tr>
+							<td>Check all the <span class="blue" style="text-decoration: none;">Terms and Conditions</span></td>
+							
+						</tr>
+						<tr>
+							<td><input type="submit" name="btnSubmit" id="btnSubmit" value="Submit Registration" disabled="disabled">
+							&nbsp;&nbsp;<input type="reset" name="btnReset" id="btnReset" value="Reset Form">
+						   <a href="../login/loginpage.html" style="color: black; text-decoration: none;background-color: white; padding: 4px;border-radius: 2px;" >BACK</a></td>
+							
+						
+							
+					      
+							 
+						</tr>
+					</table>
+				</fieldset>
+			</form>
+			</div><!-- End Content -->
+			<footer>	
+				<p>e-Polling All rights reserved.</p>
+				
+			</footer>
+			
+		</div><!-- End Wrapper -->
+		<script>
+			$(document).ready(function(){
+				$("#CofirmPassword").on("input",function(){
+					var crpwd = $("#CreatePassword").val();
+					var copwd = $("#CofirmPassword").val();
+					if(crpwd == copwd)
+					{
+						$("#btnSubmit").removeAttr("disabled");
+						$(".message").html("Confirm Password matched");
+					}
+					else{
+						$(".message").html("Confirm Password not match");
+					}
+
+				});
+				
+			});
+		</script>
+	</body>
+</html>

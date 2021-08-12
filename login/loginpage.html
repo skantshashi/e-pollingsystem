@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+  </head>
+  <body>
+    <h1><center>e-Polling</center></h1>
+    <div class="box-container">
+      <div class="login-box">
+        
+        <form id="login-submit">
+          <h2 style="margin-top: -1.8rem;">LOGIN</h2>
+          <style>
+            input[type="text"]::placeholder { /* Firefox, Chrome, Opera */
+                color: white;
+            }
+            input[type="password"]::placeholder { /* Firefox, Chrome, Opera */
+                color: white;
+            
+            </style>
+          
+
+          <div class="user-box">
+            
+            <input type="text" name="username" required="required" id="username" placeholder="E-mail ID" />
+            
+          </div>
+          
+          <div class="user-box">
+            <input type="password" name="password" required="required" id="password" placeholder="Password" />
+            
+          </div>
+          
+
+          <input type="submit" value="LOGIN" style=" background-color: rgb(71, 227, 233) ; border:none;padding: 10px 25px; cursor: pointer; border-radius: 5px;">
+          <a href="../main votingpage/index.html" style="margin-left: 50px; background-color: rgb(71, 227, 233); padding: 6px; border-radius: 3px; color:rgb(0, 8, 8);">Home</a>
+        </form>
+        
+        <br><br>
+        <center><b style="color:white;">If You are not register then <a href="../registration page/Registration.html" style="color:  rgb(71, 227, 233); text-decoration: none; background-color: white; border-radius: 4px;padding: 4px 5px;">REGISTER</a></b></center>
+
+        <form id="vlogin" class="vlogin">
+          <br>
+          <h2>VERIFY ACCOUNT</h2>
+          <span style="color:red;">Enter E-mail verification code </span>
+          <div class="user-box">
+            <input type="number" name="vcode" required="required" id="vcode" placeholder="verification code" />
+            
+          </div>
+          
+          
+          
+
+          <input type="submit" value="MATCH" style="background-color: green; border:none;padding: 10px 25px; cursor: pointer; border-radius: 5px; color:white;">
+          <b class="message"></b>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+        $("#login-submit").submit(function(e){
+          e.preventDefault();
+          var email = $("#username").val();
+          $.ajax({
+            type : "POST",
+            url : "login.php",
+            data : {
+              username :email,
+              password :$("#password").val()
+            },
+            cache:false,
+            success:function(response){
+              if(response.trim() == "success")
+              {
+                $("#login-submit").addClass("vlogin");
+                $("#vlogin").removeClass("vlogin");
+                $("#vlogin").submit(function(es){
+                  es.preventDefault();
+                  var vcode = $("#vcode").val();
+                  $.ajax({
+                    type : "POST",
+                    url : "verification.php",
+                    data : {
+                      email:email,
+                      vcode : vcode
+                    },
+                    cache:false,
+                    success:function(responses){
+                      if(responses.trim() == "success")
+                      {
+                        location.href = "../CreateVotepage/index.php";
+                      }
+                      else{
+                        alert(responses);
+                      }
+                    }
+                  })
+
+                });
+              }
+              else{
+                alert(response);
+              }
+            }
+          });
+        });
+      });
+      
+    </script>
+  </body>
+</html>
+
